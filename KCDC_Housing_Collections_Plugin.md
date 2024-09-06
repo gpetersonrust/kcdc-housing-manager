@@ -179,11 +179,34 @@ We will add JavaScript to enhance user interaction with the housing collections 
 JavaScript will be added in `/public/scripts.js`, utilizing the brand's primary color for hover effects and transitions.
 
 ```js
-(function($) {
-    $('.housing-collection').on('click', function() {
-        // Filter housing collections dynamically
+ document.addEventListener("DOMContentLoaded", function() {
+    // Toggles the visibility of housing collections based on user interaction
+    const toggleButtons = document.querySelectorAll(".toggle-collection");
+
+    toggleButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            const collectionId = this.dataset.collectionId;
+            const collectionElement = document.getElementById(collectionId);
+            
+            if (collectionElement.style.display === "none") {
+                collectionElement.style.display = "block";
+            } else {
+                collectionElement.style.display = "none";
+            }
+        });
     });
-})(jQuery);
+
+    // Dynamic content loading (if needed)
+    const loadMoreButton = document.getElementById("loadMore");
+    
+    if (loadMoreButton) {
+        loadMoreButton.addEventListener("click", function() {
+            // Logic to load more housing collections (e.g., via AJAX)
+            console.log("Load more clicked");
+        });
+    }
+});
+
 ```
 
 ---
